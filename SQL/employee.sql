@@ -191,3 +191,93 @@ select *, month(Joining_Date) as month from Employee1;
 select *, day(Joining_Date) as day from Employee1;
 
 select *, datediff(Joining_Date) as day_required_to_join_of_the_employee from Employee1;
+
+CREATE TABLE Employees2 (
+    Emp_ID INT PRIMARY KEY,
+    Emp_Name VARCHAR(50),
+    Dept_ID INT,
+    Salary DECIMAL(10,2)
+);
+
+INSERT INTO Employees2 (Emp_ID, Emp_Name, Dept_ID, Salary)
+VALUES
+(101, 'Amit', 1, 55000),
+(102, 'Priya', 2, 45000),
+(103, 'Rahul', 3, 60000),
+(104, 'Sneha', 1, 50000),
+(105, 'Neha', 4, 65000),
+(106, 'Rohit', 5, 48000);
+
+CREATE TABLE Departments2 (
+    Dept_ID INT PRIMARY KEY,
+    Dept_Name VARCHAR(50),
+    Location VARCHAR(50)
+);
+
+INSERT INTO Departments2 (Dept_ID, Dept_Name, Location)
+VALUES
+(1, 'IT', 'Pune'),
+(2, 'HR', 'Mumbai'),
+(3, 'Sales', 'Nashik'),
+(4, 'Finance', 'Pune'),
+(6, 'Marketing', 'Mumbai');
+
+select dept.dept_name, emp.Emp_Name
+from Departments2 dept
+inner join Employees2 emp 
+on dept. dept_id = emp.dept_id;
+
+select dept.dept_name, emp.Emp_Name
+from Departments2 dept
+inner join Employees2 emp 
+using (dept_id);
+
+select dept.dept_name, emp.Emp_Name
+from Departments2 dept, Employees2 emp 
+where dept. dept_id = emp.dept_id;
+
+select *
+from  Departments2 dept
+left join Employees2 emp
+on dept. dept_id = emp.dept_id;
+
+select *
+from Departments2 dept
+left join Employees2 emp 
+using (dept_id);
+
+select dept.dept_name, emp.Emp_Name
+from Departments2 dept, Employees2 emp 
+where dept. dept_id;
+
+select dept.dept_name, emp.Emp_Name
+from Departments2 dept
+right join Employees2 emp 
+on dept. dept_id = emp.dept_id;
+
+select dept.dept_name, emp.Emp_Name
+from Departments2 dept
+right join Employees2 emp 
+using (dept_id);
+
+select dept.dept_name, emp.Emp_Name
+from Departments2 dept
+right join Employees2 emp
+on dept. dept_id = emp.dept_id
+where dept. dept_id is null;
+
+select dept.dept_name, emp.Emp_Name
+from  Departments2 dept
+left join Employees2 emp
+on dept. dept_id = emp.dept_id
+union all
+select dept.dept_name, emp.Emp_Name
+from Departments2 dept
+right join Employees2 emp
+on dept. dept_id = emp.dept_id
+where dept. dept_id is null;
+
+
+
+
+
